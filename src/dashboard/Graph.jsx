@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -15,8 +13,8 @@ import {
 ChartJS.register(BarElement, Tooltip, CategoryScale, LinearScale, Legend, Filler);
 
 const Graph = ({ graphData }) => {
-  const labels = graphData?.map((item) => item.clickDate);
-  const userPerDay = graphData?.map((item) => item.count);
+  const labels = graphData?.map((item) => item.clickDate) || [];
+  const userPerDay = graphData?.map((item) => item.count) || [];
 
   const data = {
     labels: labels.length > 0 ? labels : Array(14).fill(""),
@@ -38,17 +36,12 @@ const Graph = ({ graphData }) => {
   const options = {
     maintainAspectRatio: false,
     responsive: true,
-    plugins: {
-      legend: { display: true },
-    },
+    plugins: { legend: { display: true } },
     scales: {
       y: {
         beginAtZero: true,
         ticks: {
-          callback: function (value) {
-            if (Number.isInteger(value)) return value.toString();
-            return "";
-          },
+          callback: (value) => (Number.isInteger(value) ? value.toString() : ""),
         },
         title: {
           display: true,
@@ -69,4 +62,4 @@ const Graph = ({ graphData }) => {
   return <Bar className="w-full" data={data} options={options} />;
 };
 
-export default Graph
+export default Graph;
