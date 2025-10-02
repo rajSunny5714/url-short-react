@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -10,35 +12,20 @@ import {
   Filler,
 } from "chart.js";
 
-ChartJS.register(
-  BarElement,
-  Tooltip,
-  CategoryScale,
-  LinearScale,
-  Legend,
-  Filler
-);
+ChartJS.register(BarElement, Tooltip, CategoryScale, LinearScale, Legend, Filler);
 
 const Graph = ({ graphData }) => {
-  const labels = graphData?.map((item, i) => `${item.clickDate}`);
-  const userPerDaya = graphData?.map((item) => item.count);
+  const labels = graphData?.map((item) => item.clickDate);
+  const userPerDay = graphData?.map((item) => item.count);
 
   const data = {
-    labels:
-     graphData.length > 0
-        ? labels
-        : ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    labels: labels.length > 0 ? labels : Array(14).fill(""),
     datasets: [
       {
         label: "Total Clicks",
-        data:
-         graphData.length > 0
-            ? userPerDaya
-            : [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
-        backgroundColor:
-         graphData.length > 0 ? "#3b82f6" : "rgba(54, 162, 235, 0.1)",
+        data: userPerDay.length > 0 ? userPerDay : [1,2,3,4,5,6,7,6,5,4,3,2,1],
+        backgroundColor: userPerDay.length > 0 ? "#3b82f6" : "rgba(54, 162, 235, 0.1)",
         borderColor: "#1D2327",
-        pointBorderColor: "red",
         fill: true,
         tension: 0.4,
         barThickness: 20,
@@ -52,53 +39,34 @@ const Graph = ({ graphData }) => {
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
-      legend: {
-        display: true,
-      },
+      legend: { display: true },
     },
     scales: {
       y: {
         beginAtZero: true,
         ticks: {
-          // stepSize: 1,
           callback: function (value) {
-            if (Number.isInteger(value)) {
-              return value.toString();
-            }
+            if (Number.isInteger(value)) return value.toString();
             return "";
           },
         },
         title: {
           display: true,
           text: "Number Of Clicks",
-          font: {
-            family: "Arial",
-            size: 16,
-            weight: "bold",
-            color: "#FF0000",
-          },
+          font: { family: "Arial", size: 16, weight: "bold", color: "#FF0000" },
         },
       },
       x: {
-        beginAtZero: true,
-        // ticks: {
-        //   stepSize: 1,
-        // },
         title: {
           display: true,
           text: "Date",
-          font: {
-            family: "Arial",
-            size: 16,
-            weight: "bold",
-            color: "#FF0000",
-          },
+          font: { family: "Arial", size: 16, weight: "bold", color: "#FF0000" },
         },
       },
     },
   };
 
-  return <Bar className=" w-full" data={data} options={options}></Bar>;
+  return <Bar className="w-full" data={data} options={options} />;
 };
 
-export default Graph;
+export default Graph
