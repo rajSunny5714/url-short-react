@@ -1,8 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/:path*",
-      "destination": "https://url-shorterner-sb.onrender.com/:path*"
+      "source": "/api/:path*",
+      "destination": "https://url-shorterner-sb.onrender.com/api/:path*"
+    },
+    {
+      "source": "/:shortCode",
+      "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
