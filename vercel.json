@@ -9,7 +9,7 @@
       "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
     },
     {
-      "source": "/(.*)",
+      "source": "/(about|dashboard|login|signup|.*)",
       "destination": "/index.html"
     }
   ]
