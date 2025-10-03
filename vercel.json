@@ -13,7 +13,7 @@
       "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
     },
     {
-      "source": "/(login|register|dashboard|about|)/?",
+      "source": "/:path((login|register|dashboard|about))",
       "destination": "/index.html"
     },
     {
