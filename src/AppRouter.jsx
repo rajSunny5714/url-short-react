@@ -10,13 +10,14 @@ import LoginPage from "./components/LoginPage";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "./components/ErrorPage";
+import Navbar from "./components/NavBar";
 
 const AppRouter = () => {
-//   const hideHeaderFooter = location.pathname.startsWith("/s");
+  const hideHeaderFooter = location.pathname.startsWith("/s");
 
     return (
         <>
-       <NavBar/>
+       {!hideHeaderFooter && <Navbar /> }
        <Toaster position='bottom-center'/>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -30,7 +31,7 @@ const AppRouter = () => {
           <Route path="/error" element={ <ErrorPage />} />
           <Route path="*" element={ <ErrorPage message="We can't seem to find the page you're looking for"/>} />
         </Routes>
-        <Footer/>
+        {!hideHeaderFooter && <Footer />}
       </>
     );
 }
