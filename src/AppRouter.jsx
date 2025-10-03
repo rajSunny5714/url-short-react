@@ -12,36 +12,58 @@ import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "./components/ErrorPage";
 
 const AppRouter = () => {
-//   const hideHeaderFooter = location.pathname.startsWith("/s");
+  return (
+    <>
+      <NavBar />
+      <Toaster position="bottom-center" />
+      <Routes>
+        {/* Main Pages */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutPage />} />
 
-    return (
-        <>
-       <NavBar/>
-       <Toaster position='bottom-center'/>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/s/:url" element={<ShortenUrlPage />} />
+        {/* Short URL route */}
+        <Route path="/s/:url" element={<ShortenUrlPage />} />
 
-          <Route path="/register" element={<PrivateRoute publicPage={true}><RegisterPage /></PrivateRoute>} />
-          <Route path="/login" element={<PrivateRoute publicPage={true}><LoginPage /></PrivateRoute>} />
-          
-          <Route path="/dashboard" element={ <PrivateRoute publicPage={false}><DashboardLayout /></PrivateRoute>} />
-          <Route path="/error" element={ <ErrorPage />} />
-          <Route path="*" element={ <ErrorPage message="We can't seem to find the page you're looking for"/>} />
-        </Routes>
-        <Footer/>
-      </>
-    );
-}
+        {/* Auth Pages */}
+        <Route
+          path="/register"
+          element={
+            <PrivateRoute publicPage={true}>
+              <RegisterPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PrivateRoute publicPage={true}>
+              <LoginPage />
+            </PrivateRoute>
+          }
+        />
 
+        {/* Dashboard (Protected) */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute publicPage={false}>
+              <DashboardLayout />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Error Routes */}
+        <Route path="/error" element={<ErrorPage />} />
+        <Route
+          path="*"
+          element={
+            <ErrorPage message="We can't seem to find the page you're looking for" />
+          }
+        />
+      </Routes>
+      <Footer />
+    </>
+  );
+};
 
 export default AppRouter;
-
-export const SubDomainRouter = () => {
-    return (
-        <Routes>
-          <Route path="/:url" element={<ShortenUrlPage />} />
-        </Routes>
-    )
-}
