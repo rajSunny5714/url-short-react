@@ -5,12 +5,8 @@
       "destination": "https://url-shorterner-sb.onrender.com/api/:path*"
     },
     {
-      "source": "/(login|register|dashboard|about)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/:shortCode([a-zA-Z0-9]+)",
-      "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
+      "source": "/s/:url",
+      "destination": "https://url-shorterner-sb.onrender.com/:url"
     },
     {
       "source": "/(.*)",
