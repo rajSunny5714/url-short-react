@@ -5,7 +5,7 @@
       "destination": "https://url-shorterner-sb.onrender.com/api/:path*"
     },
     {
-      "source": "/:shortCode([a-zA-Z0-9]+)",
+      "source": "/:shortCode([a-zA-Z0-9]{6,})",
       "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
     },
     {
