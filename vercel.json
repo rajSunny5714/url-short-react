@@ -9,8 +9,12 @@
       "destination": "https://url-shorterner-sb.onrender.com/:url"
     },
     {
-      "source": "/:shortCode([a-zA-Z0-9]{6,})",
+      "source": "/:shortCode([A-Za-z0-9]{6,})",
       "destination": "https://url-shorterner-sb.onrender.com/:shortCode"
+    },
+    {
+      "source": "/(login|register|dashboard|about|)/?",
+      "destination": "/index.html"
     },
     {
       "source": "/(.*)",
